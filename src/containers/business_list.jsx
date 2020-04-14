@@ -1,21 +1,30 @@
 import React, { Component } from 'react';
-import '../../assets/stylesheets/business.scss';
-
+import { connect } from 'react-redux';
 import Business from './business';
 
+import '../../assets/stylesheets/business.scss';
+
 class BusinessList extends Component {
+
+  renderList() {
+    return this.props.businesses.map((business, i) => {
+      return <Business business={business} key={i + 1} />;
+    });
+  }
 
   render() {
     return (
       <div className="BusinessList">
-        <Business />
-        <Business />
-        <Business />
-        <Business />
-        <Business />
+        {this.renderList()}
       </div>
     );
   }
 }
 
-export default BusinessList;
+function mapStateToProps(state) {
+  return {
+    businesses: state.businesses
+  };
+}
+
+export default connect(mapStateToProps)(BusinessList);

@@ -6,11 +6,6 @@ import SearchBar from '../containers/search_bar';
 import '../../assets/stylesheets/app.scss';
 
 class App extends Component {
-  // constructor(props) {
-  //   super(props);
-
-
-  // }
 
   render() {
     return (

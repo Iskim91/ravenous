@@ -20,6 +20,8 @@
     "webpack-dev-server": "^2.8.1"
   },
   "dependencies": {
+    "axios": "^0.19.2",
+    "dotenv": "^8.2.0",
     "history": "^4.7.2",
     "react": "16.0.0",
     "react-dom": "16.0.0",

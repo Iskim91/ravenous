@@ -1,22 +1,38 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import { Provider } from 'react-redux';
-// import { createStore, combineReducers, applyMiddleware } from 'redux';
-// import reduxPromise from 'redux-promise';
-// import logger from 'redux-logger';
+import { Provider } from 'react-redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import reduxPromise from 'redux-promise';
+import logger from 'redux-logger';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { createHistory as history } from 'history';
 
-import '../assets/stylesheets/application.scss';
 import App from './components/app';
-// const reducers = combineReducers({
-//   key: reducer
-// });
+import businessesReducer from './reducers/businesses_reducer';
+import '../assets/stylesheets/application.scss';
+import businesses from './data/businesses.js';
 
-// const middlewares = applyMiddleware(reduxPromise, logger);
 
+const initialState = {
+  businesses: businesses
+};
+
+const reducers = combineReducers({
+  businesses: businessesReducer
+});
+
+const middlewares = applyMiddleware(reduxPromise, logger);
+// debugger
 // render an instance of the component in the DOM
+
+
 ReactDOM.render(
-  <App />,
+  <Provider store={createStore(reducers, initialState, middlewares)}>
+    <Router history={history}>
+      <Switch>
+        <Route path="/" exact component={App} />
+      </Switch>
+    </Router>
+  </Provider>,
   document.getElementById('root')
 );
